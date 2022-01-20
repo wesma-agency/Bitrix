@@ -1,10 +1,6 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 CModule::IncludeModule('subscribe');
-// if (empty($arParams["PERSON_TYPE_ID"])) {
-//     ShowError(\Bitrix\Main\Localization\Loc::getMessage("PERSON_TYPE_IS_NOT_SET"));
-//     return;
-// }
 use Bitrix\Main\Context,
     Bitrix\Main\IO,
     Bitrix\Main\Application;
@@ -19,13 +15,6 @@ $arResult = [
     "PAY_SYSTEM" => [],
     "ORDER_PROPS" => []
 ];
-
-// class SaleOrderAjaxCustom extends \CBitrixComponent
-// {
-//     public function prepareResultArray($orderObj) {
-//         $this->executeEvent('OnSaleComponentOrderOneStepProcess', $orderObj);
-//     }
-// }
 
 $request = Context::getCurrent()->getRequest();
 $postData = $request->getPostList()->toArray();
@@ -105,18 +94,6 @@ if (count($addedFiles) > 0) {
 
 $arResult['SHOW_FILES'] = $showFiles;
 $arResult["VALIDATE_PASSWORD"] = '';
-
-// if (!$USER->IsAuthorized()) {
-//     if (!empty($arParams["ANONYMOUS_USER_ID"])) {
-//         $USER_ID = intval($arParams["ANONYMOUS_USER_ID"]);
-//     }
-// } else {
-//     $USER_ID = (new CUser)->GetID();
-// }
-
-// if (empty($arResult["USER"])) {
-//     $APPLICATION->AuthForm(\Bitrix\Main\Localization\Loc::getMessage("SALE_ACCESS_DENIED"));
-// }
 
 if ($USER->IsAuthorized()) {
     $USER_ID = (new CUser)->GetID();
@@ -423,22 +400,6 @@ if ($deliveryList) {
         }
     }
 }
-
-// SaleOrderAjaxCustom::prepareResultArray($order);
-// $event = new \Bitrix\Main\Event("sale", "OnSaleComponentOrderOneStepProcess",array($order));
-// $event->send();
-// if ($event->getResults()){
-//     echo "string";
-// }
-// $rsEvents = GetModuleEvents("sale", "OnSaleComponentOrderOneStepProcess");
-// while ($arEvent = $rsEvents->Fetch()) {
-//     // settings::debugData($arEvent);
-//     ExecuteModuleEvent($arEvent, $order);
-//     // ExecuteModuleEventEx($arEvent, array($order));
-// }
-
-// settings::debugData($deliveryListServices);
-
 
 $arResult["PRICES"]["TOTAL_PRICE"] = $order->getPrice();
 $arResult["PRICES"]["TOTAL_PRICE_FORMATTED"] = SaleFormatCurrency(
