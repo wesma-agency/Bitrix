@@ -22,5 +22,6 @@ $('.btn-ya-go').on('click',function(){
     send_statistic(element);
 });
 
-// В верстке для обработки данных у необходимых элементов указываем доп. параметры, которые и будут передаваться в скрипт Например: <a data-goevent="form_to_buy1cl;send" data-yaevent="open_click;send_click" data-yaid="47516515">Click</a>
+// В верстке для обработки данных у необходимых элементов указываем доп. параметры, которые и будут передаваться в скрипт.
+// Например: <a data-goevent="form_to_buy1cl;send" data-yaevent="open_click;send_click" data-yaid="47516515">Click</a>
  
